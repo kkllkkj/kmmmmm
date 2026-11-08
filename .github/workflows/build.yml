@@ -1,0 +1,44 @@
+name: Build desktop pets
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: windows/package-lock.json
+      - run: npm ci
+        working-directory: windows
+      - run: npm test
+        working-directory: windows
+      - run: npm run package:win
+        working-directory: windows
+      - name: Include usage guide
+        shell: pwsh
+        run: Copy-Item windows/使用说明.txt dist/windows/TigerPet-win32-x64/使用说明.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TigerPet-Windows-x64
+          path: dist/windows/TigerPet-win32-x64/
+          retention-days: 30
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/build-app.sh
+      - run: dist/小虎陪伴.app/Contents/MacOS/TigerPet --self-test
+      - run: ditto -c -k --sequesterRsrc --keepParent dist/小虎陪伴.app dist/TigerPet-macOS.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TigerPet-macOS
+          path: dist/TigerPet-macOS.zip
+          retention-days: 30

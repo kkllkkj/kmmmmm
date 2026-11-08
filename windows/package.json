@@ -1,0 +1,17 @@
+{
+  "name": "tiger-pet-windows",
+  "version": "0.2.0",
+  "private": true,
+  "description": "小虎陪伴 Windows desktop companion",
+  "main": "app/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "package:win": "npm run prepare:assets && electron-packager . TigerPet --platform=win32 --arch=x64 --out=../dist/windows --overwrite --asar --prune=true --ignore=^/README",
+    "test": "node app/model.test.cjs",
+    "prepare:assets": "node prepare-assets.cjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^43.0.0"
+  }
+}

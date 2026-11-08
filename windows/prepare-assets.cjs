@@ -1,0 +1,1 @@
+const fs=require('node:fs'),path=require('node:path');const dest=path.join(__dirname,'Assets');fs.mkdirSync(dest,{recursive:true});for(const name of ['standing','sprites','focus','workout','talents','feeding'])fs.copyFileSync(path.join(__dirname,'..','Assets',`tiger-${name}.png`),path.join(dest,`tiger-${name}.png`));

@@ -1,0 +1,10 @@
+.build/
+dist/
+.DS_Store
+
+node_modules/
+*.log
+.env
+.env.*
+preview*.png
+windows/Assets/
