@@ -153,7 +153,7 @@ final class Store: ObservableObject {
         quiet = data.quietSetting ?? false
         // Restore interrupted sessions paused; never count time while the app was closed.
         if data.session != nil { data.session?.started = nil }
-    
+
     }
     func save() {
         // Never overwrite an unreadable existing save.

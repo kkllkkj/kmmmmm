@@ -54,3 +54,5 @@ npm run package:win
 GitHub 提交到 main 后会触发 `.github/workflows/build.yml`，在 Windows/macOS runner 上分别构建和自检。到仓库 Actions → Build desktop pets → 成功的运行 → Artifacts 下载 Windows 或 macOS 包。也可在 Actions 手动 Run workflow。GitHub 不会将桌面应用变成网页，Code 页面用于查看源码。
 
 在本机 VS Code 中用“文件 → 打开文件夹”，选择本项目；主程序是 `Sources/TigerPet/main.swift`，Windows 主程序是 `windows/app/main.cjs`。后续修改提交并推送 main，会再次自动打包。
+
+语录启动后约 20 秒首次尝试，默认每 5 分钟触发；完整换行显示。自主睡眠约一分钟后醒来。投喂含接过、举到嘴边、食物缩小和吃完回应，使用两帧姿态合成系统食物图标。
